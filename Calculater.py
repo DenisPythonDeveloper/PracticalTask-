@@ -52,7 +52,7 @@ class ABCApp:
         self.label.grid(row=0, column=0, columnspan=4)
 
         # Заголовки колонок для ABC анализа
-        self.headers = ["№ матеріалу", "Річна потреба", "Ціна за одиницю, у.о.", "Загальна вартысть матерыалу"]
+        self.headers = ["№ матеріалу", "Річна потреба", "Ціна за одиницю, у.о.", "Загальна вартість матеріалу"]
         for col_num, header in enumerate(self.headers):
             header_label = Label(self.root, text=header)
             header_label.grid(row=1, column=col_num)
@@ -81,7 +81,7 @@ class ABCApp:
         self.text_color_entry.grid(row=13, column=3)
 
         # Заголовки колонок для расчета вероятности банкротства
-        self.label_bankruptcy = Label(self.root, text="Введите данные для расчета вероятности банкротства")
+        self.label_bankruptcy = Label(self.root, text="Вкажіть данні для разоахування банкрутства фірми")
         self.label_bankruptcy.grid(row=14, column=0, columnspan=4)
 
         self.bankruptcy_headers = ["Показник", "Значення"]
@@ -99,7 +99,7 @@ class ABCApp:
             entry.grid(row=i+16, column=1)
             self.bankruptcy_entries.append(entry)
         
-        self.calculate_bankruptcy_button = Button(self.root, text="Рассчитать вероятность банкротства", command=self.calculate_bankruptcy)
+        self.calculate_bankruptcy_button = Button(self.root, text="Розрахувати можливість банкрутства", command=self.calculate_bankruptcy)
         self.calculate_bankruptcy_button.grid(row=22, column=0, columnspan=4)
         
     def calculate_abc(self):
@@ -136,7 +136,7 @@ class ABCApp:
         bankruptcy_probability = calculate_bankruptcy_probability(df)
         
         # Вывод результата
-        result_label = Label(self.root, text=f"Вероятность банкротства: {bankruptcy_probability:.2f}")
+        result_label = Label(self.root, text=f"Можливість банкрутства: {bankruptcy_probability:.2f}")
         result_label.grid(row=23, column=0, columnspan=4)
 
 if __name__ == "__main__":
