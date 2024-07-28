@@ -1,0 +1,41 @@
+[33mcommit b8f7f9e984617071c8847431bd164b5ff7d2296d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/Calculater[m[33m, [m[1;31morigin/feature/Calculater[m[33m)[m
+Author: DESKTOP-L7VUPVI\denia <denisesuhov2456@gmail.com>
+Date:   Sun Jul 28 23:08:41 2024 +0300
+
+    Adde new feature to Calculater
+
+[33mcommit b17eec94e939d5dff0169449cf4743462a30d859[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: DESKTOP-L7VUPVI\denia <denisesuhov2456@gmail.com>
+Date:   Wed Jul 24 23:20:45 2024 +0300
+
+    Remove virtual environment folder from repository
+
+[33mcommit ff180cbaf1264f0aa3c9a60381f20678fb2a9ec6[m
+Author: DESKTOP-L7VUPVI\denia <denisesuhov2456@gmail.com>
+Date:   Wed Jul 24 22:56:37 2024 +0300
+
+    Add file requirements.txt
+
+[33mcommit 8d9140652679052d47b0cfb870a658c2047886c2[m
+Author: DESKTOP-L7VUPVI\denia <denisesuhov2456@gmail.com>
+Date:   Wed Jul 24 22:46:06 2024 +0300
+
+    Add myenv/ to .gitignore
+
+[33mcommit 67915cd1ad93311d0dd6909ed5648c2520dd738f[m[33m ([m[1;32mNV-Calculator[m[33m)[m
+Author: DESKTOP-L7VUPVI\denia <denisesuhov2456@gmail.com>
+Date:   Wed Jul 24 16:12:58 2024 +0300
+
+    Simple Calculater For ABC analisis
+
+[33mcommit 330938865ef53137abcb55d4cd8027d65a0f8131[m
+Author: DESKTOP-L7VUPVI\denia <denisesuhov2456@gmail.com>
+Date:   Wed Jul 24 00:05:13 2024 +0300
+
+    It`s a my first commit
+
+[33mcommit c8e5f2dee3746cfad1f8506f10a6940df3ecb701[m
+Author: DESKTOP-L7VUPVI\denia <denisesuhov2456@gmail.com>
+Date:   Sun Jul 14 23:21:54 2024 +0300
+
+    Initial commit
