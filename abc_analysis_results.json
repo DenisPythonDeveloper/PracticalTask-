@@ -1,0 +1,31 @@
+{
+    "materials": [
+        {
+            "name": "Material A",
+            "cost": 12,
+            "quantity": 150
+        },
+        {
+            "name": "Material B",
+            "cost": 5,
+            "quantity": 200
+        },
+        {
+            "name": "Material C",
+            "cost": 2,
+            "quantity": 300
+        }
+    ],
+    "total_cost": 3400,
+    "abc_classification": {
+        "A": [
+            "Material A"
+        ],
+        "B": [
+            "Material B"
+        ],
+        "C": [
+            "Material C"
+        ]
+    }
+}
