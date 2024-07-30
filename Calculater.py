@@ -167,6 +167,10 @@ class ABCApp:
             Label(result_window, text=row['№ матеріалу']).grid(row=i+1, column=2)
         
     def plot_lorenz_curve(self):
+        curve_color = self.curve_color_entry.get() or 'blue'
+        text_color = self.text_color_entry.get() or 'black'
+        line_style = self.line_style_entry.get() or '-'
+        
         data = []
         for entry_row in self.data_entries:
             row = [entry.get() for entry in entry_row]
@@ -178,44 +182,41 @@ class ABCApp:
         df['Річна потреба'] = df['Річна потреба'].astype(float)
         df['Ціна за одиницю, у.о.'] = df['Ціна за одиницю, у.о.'].astype(float)
         
-        # Выполнение АВС анализа
-        df = abc_analysis(df)
-        
-        # Получение цветов для графика
-        curve_color = self.curve_color_entry.get() or 'blue'
-        text_color = self.text_color_entry.get() or 'black'
-        line_style = self.line_style_entry.get() or '-'
-        
-        # Построение кривой Лоренца
+        # Выполнение построения кривой Лоренца
+        df['Total Cost'] = df['Річна потреба'] * df['Ціна за одиницю, у.о.']
         plot_lorenz_curve(df, curve_color, text_color, line_style)
-    
+
     def calculate_bankruptcy(self):
         data = {}
-        for i, entry in enumerate(self.bankruptcy_entries):
+        for i, label_text in enumerate(self.bankruptcy_data):
             try:
-                data[self.bankruptcy_data[i]] = float(entry.get())
+                value = float(self.bankruptcy_entries[i].get())
+                data[label_text] = value
             except ValueError:
-                result_label = Label(self.root, text="Ошибка ввода данных")
-                result_label.grid(row=28, column=0, columnspan=4)
-                return
+                data[label_text] = np.nan
         
-        # Преобразование данных в DataFrame
         df = pd.DataFrame([data])
+        z_score = None
+        result = ""
         
-        # Расчет вероятности банкротства
-        z = calculate_bankruptcy_probability(df)
+        try:
+            z_score = calculate_bankruptcy_probability(df)
+            if z_score > 2.99:
+                result = "Фірма тверда та впевнена у своїх можливостях"
+            elif 1.81 < z_score <= 2.99:
+                result = "Фірма може збанкротіти"
+            else:
+                result = "Фірма банкрут"
+        except ValueError as e:
+            result = str(e)
         
-        # Вывод результата
-        if z > 2.99:
-            result_text = "Фірма тверда та впевнена у своїх можливостях"
-        elif 1.81 < z <= 2.99:
-            result_text = "Фірма може збанкротіти"
-        else:
-            result_text = "Фірма банкрут"
-        
-        result_label = Label(self.root, text=result_text)
-        result_label.grid(row=28, column=0, columnspan=4)
-    
+        # Отображение результата в новом окне
+        result_window = Toplevel(self.root)
+        result_window.title("Результат розрахунку банкрутства")
+        if z_score is not None:
+            Label(result_window, text=f"Z-score: {z_score:.2f}").grid(row=0, column=0)
+        Label(result_window, text=result).grid(row=1, column=0)
+
 if __name__ == "__main__":
     root = Tk()
     app = ABCApp(root)
