@@ -39,7 +39,7 @@ def calculate_bankruptcy_probability(data):
     # Расчет модели Альтмана z
     z = 1.2 * current_ratio + 1.4 * accumulated_capital_ratio + 3.3 * profitability_ratio + 0.6 * debt_ratio
 
-    return z
+    return z.iloc[0]  # Возвращаем только одно значение
 
 # Класс для графического интерфейса
 class ABCApp:
@@ -189,32 +189,32 @@ class ABCApp:
         # Построение кривой Лоренца
         plot_lorenz_curve(df, curve_color, text_color, line_style)
     
-def calculate_bankruptcy(self):
-    data = {}
-    for i, entry in enumerate(self.bankruptcy_entries):
-        try:
-            data[self.bankruptcy_data[i]] = float(entry.get())
-        except ValueError:
-            result_label = Label(self.root, text="Ошибка ввода данных")
-            result_label.grid(row=28, column=0, columnspan=4)
-            return
-    
-    # Преобразование данных в DataFrame
-    df = pd.DataFrame([data])
-    
-    # Расчет вероятности банкротства
-    z = calculate_bankruptcy_probability(df)
-    
-    # Вывод результата
-    if z > 2.99:
-        result_text = "Фірма тверда та впевнена у своїх можливостях"
-    elif 1.81 < z <= 2.99:
-        result_text = "Фірма може збанкротіти"
-    else:
-        result_text = "Фірма банкрут"
-    
-    result_label = Label(self.root, text=result_text)
-    result_label.grid(row=28, column=0, columnspan=4)
+    def calculate_bankruptcy(self):
+        data = {}
+        for i, entry in enumerate(self.bankruptcy_entries):
+            try:
+                data[self.bankruptcy_data[i]] = float(entry.get())
+            except ValueError:
+                result_label = Label(self.root, text="Ошибка ввода данных")
+                result_label.grid(row=28, column=0, columnspan=4)
+                return
+        
+        # Преобразование данных в DataFrame
+        df = pd.DataFrame([data])
+        
+        # Расчет вероятности банкротства
+        z = calculate_bankruptcy_probability(df)
+        
+        # Вывод результата
+        if z > 2.99:
+            result_text = "Фірма тверда та впевнена у своїх можливостях"
+        elif 1.81 < z <= 2.99:
+            result_text = "Фірма може збанкротіти"
+        else:
+            result_text = "Фірма банкрут"
+        
+        result_label = Label(self.root, text=result_text)
+        result_label.grid(row=28, column=0, columnspan=4)
     
 if __name__ == "__main__":
     root = Tk()
